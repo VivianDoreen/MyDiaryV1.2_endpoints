@@ -1,0 +1,1 @@
+# MyDiaryV1.2_endpoints
