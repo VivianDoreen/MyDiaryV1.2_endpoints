@@ -72,7 +72,7 @@ def create_entry():
     if len(entry_title) == 1 or len(entry_content) == 1:
         return "Entry already exists"
     entries.append(entry)
-    return jsonify({'entry':entry}), 200
+    return jsonify({'entry':entry}), 201
 
 @app.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
 def update_entry(entry_id):

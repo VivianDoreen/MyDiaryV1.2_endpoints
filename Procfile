@@ -1,1 +1,1 @@
-web: gunicorn entries_functions_combined:app
+web: gunicorn entries_functions_combined:app 
