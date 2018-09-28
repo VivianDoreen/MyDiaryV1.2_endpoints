@@ -24,8 +24,9 @@ def test_get_all_entries(client):
 def test_add_entry(client):
     response = post_json(client, 'http://127.0.0.1:8080/api/v1/entries',
                         {"title":'Vivian In Andela',"content": 'New content added'})
-    assert response.status_code == 200
-    assert json_reply(response) == {"entry": {"content": "New content added", "date": "Wednesday.September.2018", "id": 3, "title": "Vivian In Andela"}}
+    assert response.status_code == 201
+    # assert json_reply(response) == {"entry": {"content": "New content added", "date": "Thursday.September.2018", "id": 3, "title": "Vivian In Andela"}}
+    json_reply(response)['entry']['id'] == 3
     # client.delete('http://127.0.0.1:8080/api/v1/entries')
 
 def test_get_entry(client):
@@ -34,8 +35,7 @@ def test_get_entry(client):
              {"content": "Funny moments","title": "Funny moments"})
     id = 1
     get_response = client.get('http://127.0.0.1:8080/api/v1/entries/1')
-    print(get_response)
-    assert post_response.status_code == 200
+    assert post_response.status_code == 201
     assert get_response.status_code == 200
     # client.delete('http://127.0.0.1:8080/api/v1/entries/1')
 
@@ -53,7 +53,7 @@ def test_delete_entry(client):
              {"content": "Funny moments","title": "Funny moments"})
     id = 1
     get_response = client.get('http://127.0.0.1:8080/api/v1/entries/1')
-    assert post_response.status_code == 200
+    assert post_response.status_code == 201
     assert get_response.status_code == 200
     response = client.delete('http://127.0.0.1:8080/api/v1/entries/1')
     assert json_reply(response) == {"Result": 'entry successfully deleted'}
